@@ -15,6 +15,20 @@ const TodoList = () => {
         }
 
         setTasks(tasks => [...tasks, task]);
+    };
+
+    const handleDeleteTask = (id) => {
+        setTasks(tasks => tasks.filter(task => task.id !== id));
+    };
+
+    const handleCompleteTask = (id) => {
+        setTasks(tasks => tasks.map(task => (task.id !== id) ? task : {...task, isCompleted: true}));
+
+        // setTasks(tasks => {
+        //     const task = tasks.find(t => t.id === id);
+        //     task.isCompleted = true;
+        //     return [...tasks];
+        // });
     }
 
     return (
@@ -25,7 +39,9 @@ const TodoList = () => {
             <TaskForm onTaskSubmit={handleNewTask} />
 
             <h2>Liste des taches</h2>
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks}
+                onTaskDelete={handleDeleteTask}
+                onTaskComplete={handleCompleteTask}/>
         </>
     );
 };

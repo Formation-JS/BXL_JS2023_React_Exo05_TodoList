@@ -73,3 +73,55 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#root {
+  width: 100%;
+}
+main {
+  width: calc(100vw - 2rem);
+  margin: auto;
+}
+@media screen and (min-width : 1000px) {
+  main {
+      max-width: 60vw;
+  }
+}
+
+label::after {
+  content: ':';
+  margin-left: 0.5ch;
+  margin-right: 0.5ch;
+}
+select, input, textarea {
+  background-color: #242424;
+  border: solid 0.25ch;
+  border-color: #d2cbcbde;
+  border-radius: 0.5ch;
+  padding: 0.5ch;
+  font-family: inherit;
+  font-size: 0.85em;
+  resize: none;
+}
+select:focus, input:focus, textarea:focus {
+  outline: hotpink solid 0.1ch;
+}
+
+h1 {
+  background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2);
+  background-clip: text;
+  color: transparent
+}
+
+p {
+  margin: 0;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-color-scheme: light) {
+  select, input, textarea {
+      background-color: #ffffff;
+      border-color: #3e5365;
+  }
+}

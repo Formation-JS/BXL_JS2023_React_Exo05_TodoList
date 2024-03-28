@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TaskForm from '../../components/task-form/task-form.jsx';
 import TaskList from '../../components/task-list/task-list.jsx';
@@ -6,22 +6,20 @@ import TaskList from '../../components/task-list/task-list.jsx';
 const TodoList = () => {
     const [tasks, setTasks] = useState([]);
 
-    const handleNewTask = (data) => {
-
+    const handleNewTask = useCallback((data) => {
         const task = {
             ...data,
             id: uuidv4(),
             isCompleted: false 
         }
-
         setTasks(tasks => [...tasks, task]);
-    };
+    }, []);
 
-    const handleDeleteTask = (id) => {
+    const handleDeleteTask = useCallback((id) => {
         setTasks(tasks => tasks.filter(task => task.id !== id));
-    };
+    }, []);
 
-    const handleCompleteTask = (id) => {
+    const handleCompleteTask = useCallback((id) => {
         setTasks(tasks => tasks.map(task => (task.id !== id) ? task : {...task, isCompleted: true}));
 
         // setTasks(tasks => {
@@ -29,7 +27,7 @@ const TodoList = () => {
         //     task.isCompleted = true;
         //     return [...tasks];
         // });
-    }
+    }, []);
 
     return (
         <>
